@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book</title>
+    <link rel="stylesheet" href="./css/style1.css">
+    <script src="./js/main.js" defer></script>
+    <script src="https://kit.fontawesome.com/ef3cedd966.js" crossorigin="anonymous"></script>
+    <style>
+        body{
+            background-image:url(./img/book_bg.webp);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+        #f1{
+            background-image: url(./img/book_cover_front.png);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .front , .back{
+            display: flex;
+            flex-direction: column;
+            
+        }
+        .front{
+            background-image: url(./img/left_page.png);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .back{
+            background-image: url(./img/right_page.png);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        h1{
+            color:#92492d;
+        }
+        #f1{
+            position: relative;
+        }
+        #f1 h1{
+            font-size: 70px;
+            text-shadow:4px  4px 0 #000; 
+            position: absolute;
+            bottom: 30%;
+        }
+        #b1{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            
+        }
+        #f2 ,#f3,#f4,#f5,#b1 ,#b2 ,#b3,#b4,#b5{
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+        }
+        #f2 h1{
+            font-size: 35px;
+            padding: 10px;
+        }
+        #f3 h1{
+            font-size: 35px;
+            padding: 10px;
+        }
+         #f4 h1{
+            font-size: 35px;
+            padding: 10px;
+        }
+         #f5 h1{
+            font-size: 35px;
+            padding: 10px;
+        }
+        #b2 h1{
+             font-size: 35px;
+            padding: 10px;
+        }
+         #b3 h1{
+             font-size: 35px;
+            padding: 10px;
+        }
+         #b4 h1{
+             font-size: 35px;
+            padding: 10px;
+        }
+        #f2 img{
+            width: 100%;
+            padding: 10px;
+            height: 30%;
+            
+        }
+        #f2 p{
+            padding: 15px;
+            
+            font-size: 20px;
+        }
+        #b2 img{
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+        }
+        #f3 p{
+            font-size: 20px;
+            padding: 10px;
+            text-align: left;
+        }
+        #b3 img{
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+        }
+        #f4 img{
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+        }
+        #b4 div{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            margin: 20px;
+            margin-bottom: 10%;
+        }
+        #b4 div img{
+            height: 100%;
+            width: 50%;
+
+        }
+        #b4 div p{
+            font-size: 20px;
+            padding: 10px;
+            text-align: left;
+        }
+        #f5 div{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            margin: 20px;
+            margin-bottom: 20%;
+        }
+        #f5 div img{
+            height: 100%;
+            width: 50%;
+
+        }
+        #f5 div p{
+            font-size: 20px;
+            padding: 10px;
+            text-align: left;
+        }
+        #b5{
+            background-image: url(./img/book_cover_front.png);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+   <!-- <div class="loader">
+        <div class="videoclass">
+            <video src="./video/video (4).mp4" muted autoplay></video> 
+        </div>
+    </div> -->
+    <!-- Previous Button -->
+    <button id="prev-btn">
+        <img src="./img/left_arrow.png" alt="" width="50px" height="50px">
+    </button>
+    <!-- Book -->
+    <div id="book" class="book">
+        <!-- Paper 1 -->
+        <div id="p1" class="paper">
+            <div class="front">
+                <div id="f1" class="front-content">
+                    <h1>STILLPOINT</h1>
+                </div>
+            </div>
+            <div class="back">
+                <div id="b1" class="back-content">
+                    
+                </div>
+            </div>
+        </div>
+        <!-- Paper 2 -->
+        <div id="p2" class="paper">
+            <div class="front">
+                <div id="f2" class="front-content">
+                    <h1>Chronicles of the eternal conflict</h1>
+                    <img src="./img/chronicles_of_eternal.png" alt="">
+                    <p>In a time now lost to memory, the world of Aethel was whole. But from a cataclysm born of pride, the land was fractured, its continents cast into an endless sky. Now, all that remains is the Drifting Archipelago, a sea of floating islands where survival is a daily struggle. Yet, a singular hope, a whispered legend, endures: the Stillpoint. It is said to be the last anchor of the old world, a source of immense power that can reshape reality. Three factions now vie for this ultimate prize, each with a vision for the future. Their war will define what is to come.</p>
+                </div>
+            </div>
+            <div class="back">
+                <div id="b2" class="back-content">
+                    <img src="./img/back2.png" alt="">
+                </div>
+            </div>
+        </div>
+        <!-- Paper 3 -->
+        <div id="p3" class="paper">
+            <div class="front">
+                <div id="f3" class="front-content">
+                    <h1>Echoes of Aethel</h1>
+                    <p>In a time now lost to memory, the world of Aethel was whole. But from a cataclysm born of pride, the land was fractured, its continents cast into an endless sky. Now, all that remains is the Drifting Archipelago, a sea of floating islands where survival is a daily struggle. Yet, a singular hope, a whispered legend, endures: the Stillpoint. It is said to be the last anchor of the old world, a source of immense power that can reshape reality. Three factions now vie for this ultimate prize, each with a vision for the future. Their war will define what is to come.</p>
+                </div>
+            </div>
+            <div class="back">
+                <div id="b3" class="back-content">
+                    <img src="./img/back3.png" alt="">
+                </div>
+            </div>
+        </div>
+        <!-- Paper 4 -->
+        <div id="p4" class="paper">
+            <div class="front">
+                <div id="f4" class="front-content">
+                    <img src="./img/front4.png" alt="">
+                </div>
+            </div>
+            <div class="back">
+                <div id="b4" class="back-content">
+                    <h1>The Three Factions</h1>
+                    <div><img src="./img/theverdict.png" alt="">
+                         <p>Descendants of the ancient forest keepers, the Guard seeks to use the Stillpoint to heal the fractured world. They believe the cataclysm was a result of abandoning nature, and only by restoring the great forests of Aethel can balance be returned. </p>
+                    </div>
+                    <div><img src="./img/cogwork.png" alt="">
+                         <p>Believing that the old ways failed and nature is too chaotic to be trusted, the Collective puts its faith in logic, metal, and steam. They see the Stillpoint as the ultimate power source, an engine to mechanize the archipelago and build a new, orderly world from the ashes of the old. </p>
+                    </div>
+                    <div><img src="./img/moonseer.png" alt="">
+                         <p>Mystics who draw their power from the celestial bodies and the ambient magic of the sky-sea. The Seers view the Stillpoint not as a tool, but as a cosmic wound.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Paper 5 -->
+        <div id="p5" class="paper">
+            <div class="front">
+                <div id="f5" class="front-content">
+                    <h1>Character Backstory</h1>
+                    <div><img src="./img/pixelboy.png" alt="">
+                         <p>Eryn hails from the peaceful village of Eldervale, nestled deep within the whispering forests of the Verdant Realm. Eldervale is known for its lush greenery, ancient trees, and harmony between humans and nature spirits.</p>
+                    </div>
+                    <div><img src="./img/pixelgirl.png" alt="">
+                         <p>Lira comes from the mystical Moonshadow Glade, a hidden grove bathed in perpetual twilight and ancient magic. This secluded sanctuary is protected by the Moonshadow tribe, who are known for their deep connection to nature and arcane arts..</p>
+                    </div>
+                </div>
+            </div>
+            <div class="back">
+                <div id="b5" class="back-content">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Next Button -->
+    <button id="next-btn">
+        <img src="./img/arrow_button.png" alt="" width="50px" height="50px">
+    </button>
+    
+</body>
+</html>
