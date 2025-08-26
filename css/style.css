@@ -1,608 +1,692 @@
  @font-face {
-            font-family: 'micro';
-            src: url(../font/Micro5-Regular.ttf);
-        }
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
-        
-        *{
-            padding: 0px;
-            margin: 0px;
-            font-family: micro;
-            font-size: 25px;
-        }
-        body{
-            height: 100%;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            overflow-x: hidden;
-            position: relative;
-        }
-        .navbar{
-            position: absolute;
-            z-index: 500;
-            top: 2%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            width: 100%;
-            animation: appear;
-            animation-timeline: scroll(root);
-        }
-        @keyframes expand{
-            0%{
-                width: 0;opacity: 0;
-            }
-            100%{
-                width: 50%;
-                opacity: 1;
-            }
-        }
-        .navbar ul{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap:1rem;
-            list-style: none;
-            padding: 15px;
-            border-radius: 15px;
-            width: 0;
-            background-color: black;
-            animation-name: expand;
-            animation-duration: 1s;
-            animation-timing-function: ease-in-out;
-            animation-fill-mode: forwards;
-            animation-delay: 4s;
-            opacity: 0;
-        }
-        .navbar ul li{
-            font-weight: 700;
-            font-size: 20px;
-            padding: 10px;
-            width:auto;        
-        }
-        .navbar ul li.active{
-            background-color: grey;
-            border-radius: 10px;
-        }
-        .navbar ul li a{
-            text-decoration: none;
-            color: white;
-        }
-        .navbar ul li a:hover{
-            color: black;
-            transition: color 0.3s ease-in-out;
-        }
-        .navbar ul li:hover{
-            background-color: grey;
-            border-radius: 10px;
-            transition: background-color 0.3s ease-in-out;
-            
-        }
-        .navbar img{
-            width: 25px;
-            height: 25px;
-        }
-        .banner{
-            background-image: url(../img/3d-fantasy-scene.jpg);
-            background-repeat: no-repeat;
-            background-size: 100% 100%;
-            background-position: center;
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-            animation: cameraZoom 3s ease-out ;
-            animation-delay: 1s;
-            z-index: 1;
-            
-        }
-        @keyframes cameraZoom{
-            0%{
-                transform: scale(1);
-            }
-            100%{
-                transform: scale(1.2);
-            }
-        }
-        .banner img{
-            width: 150%;
-            height: 150%;
-            position: absolute;
-            animation-name: cloudAnimation;
-            animation-delay: 1s;
-            animation-duration: 2s;
-            animation-timing-function: ease-out;
-            animation-fill-mode: forwards;
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .banner img.cloud1{
-            left: -50%;
-            animation-name: cloudleft;
-        }
-        .banner img.cloud2{
-            right: -50%;
-            animation-name: cloudright;
-        }
-        @keyframes cloudleft{
-            from{
-                transform:translateX(0)
-            }
-            to{
-                transform:translateX(-75%);
-            }
-        }
-        @keyframes cloudright{
-            from{
-                transform:translateX(0);
-            }
-            to{
-                transform:translateX(75%);
-            }
-        }
-        svg path{
-            fill: transparent;
-            stroke: black;
-            stroke-width: 0.5;
-            stroke-dasharray: 17;
-            stroke-dashoffset: 17;
-            animation: textAnimation 4s ease-in-out forwards;
-        }
-        @keyframes textAnimation{
-            0%{
-                stroke-dashoffset: 17;
-            }
-            80%{
-                fill: transparent;
-            }
-            100%{
-                fill: black;
-                stroke-dashoffset: 0;
-            }  
-        }
-        .title{
-            position: absolute;
-            top: 60%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-        }
-        .title div:nth-child(2){
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 4px 4px 0 black;
-            cursor: pointer;
-            transition: box-shadow 0.15s ease;
-        }
-        .title div:nth-child(2):hover{
-            transform: scale(1.05);
-        }
-        .title div:nth-child(2):active{
-            transform: scale(0.95) translate(2px, 2px);
-            box-shadow: 2px 2px 0 black;
-            
-        }
-        .title div:nth-child(2) h3{
-            font-size: 40px;
-        }
-        svg path:hover {
-            fill: transparent;
-            stroke: white;
-            stroke-width: 1.5;
-        }
-        .title div:nth-child(3){
-            margin: 20px;
-            font-weight: 700;
-        }
-        .title div:nth-child(3) a{
-            text-decoration: none;
-            color: black;
-        }
-        .title div:nth-child(3) i{
-            color : black;
-            animation: bounce 1s infinite;
-            padding-top:15px ;
-        }
+     font-family: 'micro';
+     src: url(../font/Micro5-Regular.ttf);
+ }
 
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-        .banner1{
-            background-image: url(../img/Lucid_Origin_Lowpoly_fantasy_mountain_scene_with_sharp_jagged__2.jpg);
-            background-repeat: no-repeat;
-            background-size: 100% 100%;
-            background-position: center;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .banner1 img{
-            height: 10%;
-            width: 10%;
-        }
-        .banner1 > :first-child{
-            animation: autorotate;
-            animation-timeline: scroll(root);  
-        }
-        .banner1 div:nth-child(2){
-            width: 70%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-        @keyframes autorotate {
-            from{
-                transform: rotate(0deg);
-            }
-            to{
-                transform: rotate(360deg);
-            }
-        }
-        .container-white1{
-            width: 30%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-        .container-white1 .images-container{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            padding: 30px;
-        }
-        .container-white1 .images-container div:nth-child(1){
-            width: 200px;
-            height: 200px;
-            display: flex;
-            transition: 0.5s ease-in-out;
-            justify-content: center;
-            align-items: center;
-            border-radius: 50%;
-            overflow: hidden;
-        }
-        .container-white1 .images-container div:nth-child(3){
-            width: 200px;
-            height: 200px;
-            display: flex;
-            transition: 0.5s ease-in-out;
-            justify-content: center;
-            align-items: center;
-            border-radius: 50%;
-            overflow: hidden;
-        }
-        .container-white1 .images-container div:nth-child(1):hover{
-            box-shadow: 4px 4px 0 black;
-            transform: scale(1.03);
-        }
-        .container-white1 .images-container div:nth-child(3):hover{
-            box-shadow: 4px 4px 0 black;
-            transform: scale(1.03);
-        }
+ @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
 
-        .container-white1 .images-container img{
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
-            transition: transform 0.3s ease-in-out;
-        }
-        .container-white1 .images-container img:hover{
-            transform: scale(1.1);
-        }
-        .container-white1-text{
-            width: 50%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-        }
-        .container-white1-text h1{
-            font-size: 50px;
-            margin-bottom: 20px;
-        }
-        .container-white1-text a{
-            text-decoration: none;
-            color: black;
-            font-weight: 700;
-            font-size: 30px;
-            background-color: rgb(255, 255, 255,0.4);
-            padding: 10px;
-            border-radius: 15px;
-            cursor: pointer;
-        }
-        .container-white1-text a img{
-            width: 30px;
-            height: 30px;
-            margin-left: 10px;
-            vertical-align: middle;
-        }
-        .container-white1-text a:hover{
-            background-color: rgb(255, 255, 255,0.6);
-            transition: background-color 0.3s ease-in-out;
-            box-shadow: 4px 4px 0 black;
-            transform: scale(1.03);
-        }
-        .container-white1-text a:active{
-            transform: scale(0.95) translate(2px, 2px);
-            box-shadow: 2px 2px 0 black;
-        }
+ * {
+     padding: 0px;
+     margin: 0px;
+     font-family: micro;
+     font-size: 25px;
+ }
 
-        /* Minecraft Animation Styles */
-                /* Minecraft Animation Styles */
-                /* Minecraft Animation Styles */
-                /* Minecraft Animation Styles */
-        .container2{
-            /* EDITED: Widened the container to give the larger text more horizontal space. */
-            width: 80%;
-            /* EDITED: Kept height at 550vh for a balanced scroll animation. */
-            height: 550vh; 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 50px 0;
-        }
-        
-        .container2 .text2 h1{
-            color: #888888;
-            /* EDITED: Increased font size for greater visual impact. */
-            font-size: 140px; 
-            width: 50%;
-            font-weight: 900;
-            /* EDITED: Scaled up the text-shadow to match the larger font size. */
-            text-shadow: 
-                6px 6px 0px #444444,
-                12px 12px 0px #222222,
-                3px 3px 10px rgba(0,0,0,0.8);
-            /* EDITED: Added more letter spacing for readability. */
-            letter-spacing: 10px; 
-            opacity: 0;
-            transform: scale(0.1) rotateY(-90deg) translateZ(-100px);
-            transition: none;
-            image-rendering: pixelated;
-            image-rendering: -moz-crisp-edges;
-            image-rendering: crisp-edges;
-            position: relative;
-        }
-        
-        .container2 .text2{
-            width: 100%;
-            height: 100%;
-            display: flex;
-            overflow: hidden;
-        }
-        
-        .container2 .text2:nth-child(1){
-            justify-content: flex-start;
-        }
-        .container2 .text2:nth-child(2){
-            justify-content: end;
-        }
-        .container2 .text2:nth-child(3){
-            justify-content: flex-start;
-        }
-        .container2 .text2:nth-child(4){
-            justify-content: end;
-        }
-        .container2 .text2:nth-child(5){
-            justify-content: start;
-        }
-        .container2 .text2:nth-child(6){
-            justify-content: center;
-        }
-        .container2 .text2:nth-child(6) h1{
-            /* EDITED: Increased the size of the final phrase to make it stand out. */
-            font-size: 150px; 
-            color: #888888;
-            text-wrap: nowrap;
-        }
+ body {
+     height: 100%;
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     overflow-x: hidden;
+     position: relative;
+ }
 
-        /* Minecraft-style block effects */
-        .container2 .text2 h1::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            background: linear-gradient(45deg, 
-                rgba(0, 0, 0, 0.1) 0%,
-                rgba(68, 68, 68, 0.1) 25%,
-                rgba(0, 0, 0, 0.1) 50%,
-                rgba(68, 68, 68, 0.1) 75%,
-                rgba(0, 0, 0, 0.1) 100%
-            );
-            z-index: -1;
-            opacity: 0;
-            transform: scale(0);
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
+ .navbar {
+     position: absolute;
+     z-index: 500;
+     top: 2%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     text-align: center;
+     width: 100%;
+     animation: appear;
+     animation-timeline: scroll(root);
+ }
 
-        .container2 .text2 h1.active::before {
-            opacity: 1;
-            transform: scale(1);
-        }
+ @keyframes expand {
+     0% {
+         width: 0;
+         opacity: 0;
+     }
 
-        /* Animation states */
-        .container2 .text2 h1.minecraft-appear {
-            opacity: 1;
-            transform: scale(1) rotateY(0deg) translateZ(0px);
-            animation: minecraftPop 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
+     100% {
+         width: 50%;
+         opacity: 1;
+     }
+ }
 
-        .container2 .text2 h1.minecraft-active {
-            opacity: 1;
-            transform: scale(1) rotateY(0deg) translateZ(0px);
-            color: #000000;
-            /* EDITED: Updated active state shadow to match the new base shadow. */
-            text-shadow: 
-                6px 6px 0px #666666,
-                12px 12px 0px #333333,
-                3px 3px 10px rgba(0,0,0,0.8),
-                0 0 20px rgba(128,128,128,0.3);
-            animation: colorSwitch 2s ease-in-out infinite;
-        }
+ .navbar ul {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     gap: 1rem;
+     list-style: none;
+     padding: 15px;
+     border-radius: 15px;
+     width: 0;
+     background-color: black;
+     animation-name: expand;
+     animation-duration: 1s;
+     animation-timing-function: ease-in-out;
+     animation-fill-mode: forwards;
+     animation-delay: 4s;
+     opacity: 0;
+ }
 
-        @keyframes colorSwitch {
-            0%, 100% {
-                color: #000000;
-                /* EDITED: Updated keyframe shadows to match. */
-                text-shadow: 
-                    6px 6px 0px #666666,
-                    12px 12px 0px #333333,
-                    3px 3px 10px rgba(0,0,0,0.8);
-            }
-            50% {
-                color: #888888;
-                text-shadow: 
-                    6px 6px 0px #444444,
-                    12px 12px 0px #222222,
-                    3px 3px 10px rgba(128,128,128,0.5);
-            }
-        }
+ .navbar ul li {
+     font-weight: 700;
+     font-size: 20px;
+     padding: 10px;
+     width: auto;
+ }
 
-        .container2 .text2 h1.minecraft-disappear {
-            animation: minecraftBreak 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
-        }
+ .navbar ul li.active {
+     background-color: grey;
+     border-radius: 10px;
+ }
 
-        /* Keyframe animations */
-        @keyframes minecraftPop {
-            0% {
-                transform: scale(0.1) rotateY(-90deg) translateZ(-100px);
-                opacity: 0;
-            }
-            50% {
-                transform: scale(1.2) rotateY(-45deg) translateZ(50px);
-                opacity: 0.7;
-            }
-            70% {
-                transform: scale(0.9) rotateY(15deg) translateZ(20px);
-                opacity: 0.9;
-            }
-            100% {
-                transform: scale(1) rotateY(0deg) translateZ(0px);
-                opacity: 1;
-            }
-        }
+ .navbar ul li a {
+     text-decoration: none;
+     color: white;
+ }
 
-        @keyframes minecraftBreak {
-            0% {
-                transform: scale(1) rotateY(0deg) translateZ(0px);
-                opacity: 1;
-            }
-            25% {
-                transform: scale(0.8) rotateY(15deg) translateZ(-20px);
-                opacity: 0.8;
-            }
-            50% {
-                transform: scale(0.5) rotateY(45deg) translateZ(-50px);
-                opacity: 0.5;
-            }
-            100% {
-                transform: scale(0.1) rotateY(90deg) translateZ(-100px);
-                opacity: 0;
-            }
-        }
+ .navbar ul li a:hover {
+     color: black;
+     transition: color 0.3s ease-in-out;
+ }
 
-        /* Hover effects */
-        .container2 .text2 h1.minecraft-active:hover {
-            animation: minecraftShake 0.5s ease-in-out, colorSwitch 2s ease-in-out infinite;
-            cursor: pointer;
-        }
+ .navbar ul li:hover {
+     background-color: grey;
+     border-radius: 10px;
+     transition: background-color 0.3s ease-in-out;
 
-        @keyframes minecraftShake {
-            0%, 100% { transform: scale(1) rotateY(0deg) translateX(0px); }
-            10% { transform: scale(1.02) rotateY(2deg) translateX(-2px); }
-            20% { transform: scale(1.02) rotateY(-2deg) translateX(2px); }
-            30% { transform: scale(1.02) rotateY(2deg) translateX(-2px); }
-            40% { transform: scale(1.02) rotateY(-2deg) translateX(2px); }
-            50% { transform: scale(1.05) rotateY(0deg) translateX(0px); }
-            60% { transform: scale(1.02) rotateY(2deg) translateX(-2px); }
-            70% { transform: scale(1.02) rotateY(-2deg) translateX(2px); }
-            80% { transform: scale(1.02) rotateY(2deg) translateX(-2px); }
-            90% { transform: scale(1.02) rotateY(-2deg) translateX(2px); }
-        }
+ }
 
-        /* Progress indicator */
-        .minecraft-progress {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: none; /* Hidden by default, shown only during container2 animation */
-            gap: 10px;
-            z-index: 1000;
-        }
+ .navbar img {
+     width: 25px;
+     height: 25px;
+ }
 
-        .progress-block {
-            width: 20px;
-            height: 20px;
-            background: #444444;
-            border: 2px solid #222222;
-            opacity: 0.3;
-            transition: all 0.3s ease;
-        }
+ .banner {
+     background-image: url(../img/3d-fantasy-scene.jpg);
+     background-repeat: no-repeat;
+     background-size: 100% 100%;
+     background-position: center;
+     width: 100%;
+     height: 100vh;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     position: relative;
+     overflow: hidden;
+     animation: cameraZoom 3s ease-out;
+     animation-delay: 1s;
+     z-index: 1;
 
-        .progress-block.active {
-            opacity: 1;
-            background: #888888;
-            box-shadow: 0 0 10px rgba(128,128,128,0.5);
-            transform: scale(1.2);
-        }
+ }
 
-        /* Mobile responsiveness */
-        @media (max-width: 768px) {
-            .container2 .text2 h1 {
-                /* EDITED: Adjusted for mobile. */
-                font-size: 100px; 
-            }
-            .container2 .text2:nth-child(6) h1 {
-                /* EDITED: Adjusted for mobile. */
-                font-size: 110px; 
-            }
-        }
+ @keyframes cameraZoom {
+     0% {
+         transform: scale(1);
+     }
 
-        @media (max-width: 480px) {
-            .container2 .text2 h1 {
-                /* EDITED: Adjusted for small screens. */
-                font-size: 70px; 
-                letter-spacing: 6px;
-                text-shadow: 
-                    4px 4px 0px #444444,
-                    8px 8px 0px #222222,
-                    2px 2px 8px rgba(0,0,0,0.8);
-            }
-            .container2 .text2:nth-child(6) h1 {
-                font-size: 80px;
-            }
-        }
+     100% {
+         transform: scale(1.2);
+     }
+ }
+
+ .banner img {
+     width: 150%;
+     height: 150%;
+     position: absolute;
+     animation-name: cloudAnimation;
+     animation-delay: 1s;
+     animation-duration: 2s;
+     animation-timing-function: ease-out;
+     animation-fill-mode: forwards;
+     z-index: 1000;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+
+ .banner img.cloud1 {
+     left: -50%;
+     animation-name: cloudleft;
+ }
+
+ .banner img.cloud2 {
+     right: -50%;
+     animation-name: cloudright;
+ }
+
+ @keyframes cloudleft {
+     from {
+         transform: translateX(0)
+     }
+
+     to {
+         transform: translateX(-75%);
+     }
+ }
+
+ @keyframes cloudright {
+     from {
+         transform: translateX(0);
+     }
+
+     to {
+         transform: translateX(75%);
+     }
+ }
+
+ svg path {
+     fill: transparent;
+     stroke: black;
+     stroke-width: 0.5;
+     stroke-dasharray: 17;
+     stroke-dashoffset: 17;
+     animation: textAnimation 4s ease-in-out forwards;
+ }
+
+ @keyframes textAnimation {
+     0% {
+         stroke-dashoffset: 17;
+     }
+
+     80% {
+         fill: transparent;
+     }
+
+     100% {
+         fill: black;
+         stroke-dashoffset: 0;
+     }
+ }
+
+ .title {
+     position: absolute;
+     top: 60%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     text-align: center;
+ }
+
+ .title div:nth-child(2) {
+     background-color: white;
+     border-radius: 10px;
+     box-shadow: 4px 4px 0 black;
+     cursor: pointer;
+     transition: box-shadow 0.15s ease;
+ }
+
+ .title div:nth-child(2):hover {
+     transform: scale(1.05);
+ }
+
+ .title div:nth-child(2):active {
+     transform: scale(0.95) translate(2px, 2px);
+     box-shadow: 2px 2px 0 black;
+
+ }
+
+ .title div:nth-child(2) h3 {
+     font-size: 40px;
+ }
+
+ svg path:hover {
+     fill: transparent;
+     stroke: white;
+     stroke-width: 1.5;
+ }
+
+ .title div:nth-child(3) {
+     margin: 20px;
+     font-weight: 700;
+ }
+
+ .title div:nth-child(3) a {
+     text-decoration: none;
+     color: black;
+ }
+
+ .title div:nth-child(3) i {
+     color: black;
+     animation: bounce 1s infinite;
+     padding-top: 15px;
+ }
+
+ @keyframes bounce {
+
+     0%,
+     100% {
+         transform: translateY(0);
+     }
+
+     50% {
+         transform: translateY(-10px);
+     }
+ }
+
+ .banner1 {
+     background-image: url(../img/Lucid_Origin_Lowpoly_fantasy_mountain_scene_with_sharp_jagged__2.jpg);
+     background-repeat: no-repeat;
+     background-size: 100% 100%;
+     background-position: center;
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     position: relative;
+     overflow: hidden;
+ }
+
+ .banner1 img {
+     height: 10%;
+     width: 10%;
+ }
+
+ .banner1> :first-child {
+     animation: autorotate;
+     animation-timeline: scroll(root);
+ }
+
+ .banner1 div:nth-child(2) {
+     width: 70%;
+     height: 100%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     position: relative;
+ }
+
+ @keyframes autorotate {
+     from {
+         transform: rotate(0deg);
+     }
+
+     to {
+         transform: rotate(360deg);
+     }
+ }
+
+ .container-white1 {
+     width: 30%;
+     height: 100%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     position: relative;
+ }
+
+ .container-white1 .images-container {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     gap: 20px;
+     padding: 30px;
+ }
+
+ .container-white1 .images-container div:nth-child(1) {
+     width: 200px;
+     height: 200px;
+     display: flex;
+     transition: 0.5s ease-in-out;
+     justify-content: center;
+     align-items: center;
+     border-radius: 50%;
+     overflow: hidden;
+ }
+
+ .container-white1 .images-container div:nth-child(3) {
+     width: 200px;
+     height: 200px;
+     display: flex;
+     transition: 0.5s ease-in-out;
+     justify-content: center;
+     align-items: center;
+     border-radius: 50%;
+     overflow: hidden;
+ }
+
+ .container-white1 .images-container div:nth-child(1):hover {
+     box-shadow: 4px 4px 0 black;
+     transform: scale(1.03);
+ }
+
+ .container-white1 .images-container div:nth-child(3):hover {
+     box-shadow: 4px 4px 0 black;
+     transform: scale(1.03);
+ }
+
+ .container-white1 .images-container img {
+     width: 200px;
+     height: 200px;
+     border-radius: 50%;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+     transition: transform 0.3s ease-in-out;
+ }
+
+ .container-white1 .images-container img:hover {
+     transform: scale(1.1);
+ }
+
+ .container-white1-text {
+     width: 50%;
+     height: 100%;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     text-align: center;
+     padding: 20px;
+     background-color: rgba(255, 255, 255, 0.2);
+     border-radius: 10px;
+ }
+
+ .container-white1-text h1 {
+     font-size: 50px;
+     margin-bottom: 20px;
+ }
+
+ .container-white1-text a {
+     text-decoration: none;
+     color: black;
+     font-weight: 700;
+     font-size: 30px;
+     background-color: rgb(255, 255, 255, 0.4);
+     padding: 10px;
+     border-radius: 15px;
+     cursor: pointer;
+ }
+
+ .container-white1-text a img {
+     width: 30px;
+     height: 30px;
+     margin-left: 10px;
+     vertical-align: middle;
+ }
+
+ .container-white1-text a:hover {
+     background-color: rgb(255, 255, 255, 0.6);
+     transition: background-color 0.3s ease-in-out;
+     box-shadow: 4px 4px 0 black;
+     transform: scale(1.03);
+ }
+
+ .container-white1-text a:active {
+     transform: scale(0.95) translate(2px, 2px);
+     box-shadow: 2px 2px 0 black;
+ }
+
+ .container2 {
+     width: 80%;
+     height: 550vh;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     padding: 50px 0;
+ }
+
+ .container2 .text2 h1 {
+     color: #888888;
+     font-size: 140px;
+     width: 50%;
+     font-weight: 900;
+     text-shadow:
+         6px 6px 0px #444444,
+         12px 12px 0px #222222,
+         3px 3px 10px rgba(0, 0, 0, 0.8);
+     letter-spacing: 10px;
+     opacity: 0;
+     transform: scale(0.1) rotateY(-90deg) translateZ(-100px);
+     transition: none;
+     image-rendering: pixelated;
+     image-rendering: -moz-crisp-edges;
+     image-rendering: crisp-edges;
+     position: relative;
+ }
+
+ .container2 .text2 {
+     width: 100%;
+     height: 100%;
+     display: flex;
+     overflow: hidden;
+ }
+
+ .container2 .text2:nth-child(1) {
+     justify-content: flex-start;
+ }
+
+ .container2 .text2:nth-child(2) {
+     justify-content: end;
+ }
+
+ .container2 .text2:nth-child(3) {
+     justify-content: flex-start;
+ }
+
+ .container2 .text2:nth-child(4) {
+     justify-content: end;
+ }
+
+ .container2 .text2:nth-child(5) {
+     justify-content: start;
+ }
+
+ .container2 .text2:nth-child(6) {
+     justify-content: center;
+ }
+
+ .container2 .text2:nth-child(6) h1 {
+     font-size: 150px;
+     color: #888888;
+     text-wrap: nowrap;
+ }
+
+ .container2 .text2 h1::before {
+     content: '';
+     position: absolute;
+     top: -10px;
+     left: -10px;
+     right: -10px;
+     bottom: -10px;
+     background: linear-gradient(45deg,
+             rgba(0, 0, 0, 0.1) 0%,
+             rgba(68, 68, 68, 0.1) 25%,
+             rgba(0, 0, 0, 0.1) 50%,
+             rgba(68, 68, 68, 0.1) 75%,
+             rgba(0, 0, 0, 0.1) 100%);
+     z-index: -1;
+     opacity: 0;
+     transform: scale(0);
+     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+ }
+
+ .container2 .text2 h1.active::before {
+     opacity: 1;
+     transform: scale(1);
+ }
+
+ .container2 .text2 h1.minecraft-appear {
+     opacity: 1;
+     transform: scale(1) rotateY(0deg) translateZ(0px);
+     animation: minecraftPop 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+ }
+
+ .container2 .text2 h1.minecraft-active {
+     opacity: 1;
+     transform: scale(1) rotateY(0deg) translateZ(0px);
+     color: #000000;
+     text-shadow:
+         6px 6px 0px #666666,
+         12px 12px 0px #333333,
+         3px 3px 10px rgba(0, 0, 0, 0.8),
+         0 0 20px rgba(128, 128, 128, 0.3);
+     animation: colorSwitch 2s ease-in-out infinite;
+ }
+
+ @keyframes colorSwitch {
+
+     0%,
+     100% {
+         color: #000000;
+         text-shadow:
+             6px 6px 0px #666666,
+             12px 12px 0px #333333,
+             3px 3px 10px rgba(0, 0, 0, 0.8);
+     }
+
+     50% {
+         color: #888888;
+         text-shadow:
+             6px 6px 0px #444444,
+             12px 12px 0px #222222,
+             3px 3px 10px rgba(128, 128, 128, 0.5);
+     }
+ }
+
+ .container2 .text2 h1.minecraft-disappear {
+     animation: minecraftBreak 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
+ }
+
+ @keyframes minecraftPop {
+     0% {
+         transform: scale(0.1) rotateY(-90deg) translateZ(-100px);
+         opacity: 0;
+     }
+
+     50% {
+         transform: scale(1.2) rotateY(-45deg) translateZ(50px);
+         opacity: 0.7;
+     }
+
+     70% {
+         transform: scale(0.9) rotateY(15deg) translateZ(20px);
+         opacity: 0.9;
+     }
+
+     100% {
+         transform: scale(1) rotateY(0deg) translateZ(0px);
+         opacity: 1;
+     }
+ }
+
+ @keyframes minecraftBreak {
+     0% {
+         transform: scale(1) rotateY(0deg) translateZ(0px);
+         opacity: 1;
+     }
+
+     25% {
+         transform: scale(0.8) rotateY(15deg) translateZ(-20px);
+         opacity: 0.8;
+     }
+
+     50% {
+         transform: scale(0.5) rotateY(45deg) translateZ(-50px);
+         opacity: 0.5;
+     }
+
+     100% {
+         transform: scale(0.1) rotateY(90deg) translateZ(-100px);
+         opacity: 0;
+     }
+ }
+
+ .container2 .text2 h1.minecraft-active:hover {
+     animation: minecraftShake 0.5s ease-in-out, colorSwitch 2s ease-in-out infinite;
+     cursor: pointer;
+ }
+
+ @keyframes minecraftShake {
+
+     0%,
+     100% {
+         transform: scale(1) rotateY(0deg) translateX(0px);
+     }
+
+     10% {
+         transform: scale(1.02) rotateY(2deg) translateX(-2px);
+     }
+
+     20% {
+         transform: scale(1.02) rotateY(-2deg) translateX(2px);
+     }
+
+     30% {
+         transform: scale(1.02) rotateY(2deg) translateX(-2px);
+     }
+
+     40% {
+         transform: scale(1.02) rotateY(-2deg) translateX(2px);
+     }
+
+     50% {
+         transform: scale(1.05) rotateY(0deg) translateX(0px);
+     }
+
+     60% {
+         transform: scale(1.02) rotateY(2deg) translateX(-2px);
+     }
+
+     70% {
+         transform: scale(1.02) rotateY(-2deg) translateX(2px);
+     }
+
+     80% {
+         transform: scale(1.02) rotateY(2deg) translateX(-2px);
+     }
+
+     90% {
+         transform: scale(1.02) rotateY(-2deg) translateX(2px);
+     }
+ }
+
+ .minecraft-progress {
+     position: fixed;
+     bottom: 20px;
+     left: 50%;
+     transform: translateX(-50%);
+     display: none;
+     gap: 10px;
+     z-index: 1000;
+ }
+
+ .progress-block {
+     width: 20px;
+     height: 20px;
+     background: #444444;
+     border: 2px solid #222222;
+     opacity: 0.3;
+     transition: all 0.3s ease;
+ }
+
+ .progress-block.active {
+     opacity: 1;
+     background: #888888;
+     box-shadow: 0 0 10px rgba(128, 128, 128, 0.5);
+     transform: scale(1.2);
+ }
+
+ @media (max-width: 768px) {
+     .container2 .text2 h1 {
+         font-size: 100px;
+     }
+
+     .container2 .text2:nth-child(6) h1 {
+         font-size: 110px;
+     }
+ }
+
+ @media (max-width: 480px) {
+     .container2 .text2 h1 {
+         font-size: 70px;
+         letter-spacing: 6px;
+         text-shadow:
+             4px 4px 0px #444444,
+             8px 8px 0px #222222,
+             2px 2px 8px rgba(0, 0, 0, 0.8);
+     }
+
+     .container2 .text2:nth-child(6) h1 {
+         font-size: 80px;
+     }
+ }

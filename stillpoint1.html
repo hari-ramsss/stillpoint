@@ -1,38 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StillPoint - The World</title>
+    <script src="https://kit.fontawesome.com/ef3cedd966.js" crossorigin="anonymous"></script>
     <style>
         /* Using a similar font to your original page for consistency */
         @font-face {
             font-family: 'micro';
-            src: url(./font/Micro5-Regular.ttf); /* Make sure this path is correct or use a fallback */
+            src: url(./font/Micro5-Regular.ttf);
+            /* Make sure this path is correct or use a fallback */
         }
+
         * {
             padding: 0;
             margin: 0;
             box-sizing: border-box;
         }
+
         body {
-            font-family: 'micro', sans-serif; /* Fallback to a standard font */
-            background-color: #1a1a1a; /* A dark background for the theme */
+            font-family: 'micro', sans-serif;
+            /* Fallback to a standard font */
+            background-color: #1a1a1a;
+            /* A dark background for the theme */
             color: white;
-            overflow: hidden; /* Prevents scrollbars from appearing */
+            overflow: hidden;
+            /* Prevents scrollbars from appearing */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
         }
+
         .loader {
             width: 100%;
             height: 100%;
             position: absolute;
             z-index: 1000;
-            opacity: 1; /* Start with full opacity */
-            animation: fadeOutLoader 7.5s  forwards; /* Use 'forwards' to keep the final state */
+            opacity: 1;
+            /* Start with full opacity */
+            animation: fadeOutLoader 7.5s forwards;
+            /* Use 'forwards' to keep the final state */
         }
 
         @keyframes fadeOutLoader {
@@ -41,50 +52,54 @@
                 z-index: 1000;
                 transform: translateY(0);
             }
+
             80% {
                 opacity: 1;
                 transform: translateY(0);
             }
-            100% {  
-                
-                z-index: -1; 
+
+            100% {
+
+                z-index: -1;
                 transform: translateY(-100%);
             }
         }
-        
-        .videoclass{
+
+        .videoclass {
             width: 100%;
             height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
             background-color: #04060a;
-            
+
         }
-        video{
-            width:400px ;
+
+        video {
+            width: 400px;
             height: 400px;
-            
+
         }
-        
+
         .game-title {
             position: absolute;
             top: 20px;
             font-size: 50px;
             color: #ffffff;
-            text-shadow: 
+            text-shadow:
                 3px 3px 0px #555555,
                 6px 6px 0px #222222;
             z-index: 10;
         }
+
         .pause-button {
             position: absolute;
             top: 20px;
             left: 20px;
             width: 60px;
             height: 60px;
-            background-color: rgba(0, 0, 0, 0.7);
-            border: 2px solid #fff;
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 2px solid rgba(255, 215, 0, 0.5);
             border-radius: 10px;
             cursor: pointer;
             display: flex;
@@ -92,11 +107,14 @@
             justify-content: center;
             z-index: 15;
             transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
         }
 
         .pause-button:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 215, 0, 0.2);
+            border-color: #ffd700;
             transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
         }
 
         .pause-button img {
@@ -168,10 +186,10 @@
             height: 100vh;
             position: relative;
             background-image: url('./img/game_background.jpg');
-            background-size: cover; 
+            background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            image-rendering: pixelated; 
+            image-rendering: pixelated;
         }
 
         #game-canvas {
@@ -182,33 +200,67 @@
             height: 100%;
         }
 
+        .nav-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 15;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            text-decoration: none;
+        }
+
+        .nav-button:hover {
+            background-color: rgba(255, 215, 0, 0.2);
+            border-color: #ffd700;
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        .nav-button i {
+            font-size: 24px;
+            color: #ffd700;
+        }
     </style>
 </head>
+
 <body>
 
     <div class="loader">
         <div class="videoclass">
-            <video src="./video/video.mp4" muted autoplay></video> 
+            <video src="./video/video.mp4" muted autoplay></video>
         </div>
     </div>
     <h1 class="game-title">StillPoint</h1>
-    
-    <!-- Pause Button -->
+
     <div class="pause-button" id="pauseButton">
-        <!-- Add your custom pause button image here -->
-        <img src="./img/pause_button.png" alt="⏸" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <img src="./img/pause_button.png" alt="⏸"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
         <span style="display:none; font-size:24px;">⏸</span>
     </div>
 
-    <!-- Pause Menu -->
+    <a href="./index.html" class="nav-button" title="Back to Main Menu">
+        <i class="fas fa-home"></i>
+    </a>
+
     <div class="pause-menu" id="pauseMenu">
         <h2>Game Paused</h2>
-        <button class="menu-button" id="resumeButton">Resume</button>
+        <button class="menu-button" id="resumeButton">Resume Game</button>
         <button class="menu-button" id="soundButton">Sound: <span id="soundStatus">ON</span></button>
-        <button class="menu-button" id="exitButton">Exit Game</button>
+        <button class="menu-button" id="restartButton">Restart Game</button>
+        <button class="menu-button" id="exitButton">Exit to Main Menu</button>
     </div>
 
-    
+
     <div id="game-container">
         <canvas id="game-canvas"></canvas>
     </div>
@@ -231,6 +283,7 @@
         const resumeButton = document.getElementById('resumeButton');
         const soundButton = document.getElementById('soundButton');
         const soundStatus = document.getElementById('soundStatus');
+        const restartButton = document.getElementById('restartButton');
         const exitButton = document.getElementById('exitButton');
 
         // Pause button click handler
@@ -252,23 +305,67 @@
             soundStatus.className = soundEnabled ? '' : 'off';
         });
 
+        // Restart button click handler
+        restartButton.addEventListener('click', () => {
+            if (confirm('Are you sure you want to restart the game? All progress will be lost.')) {
+                restartGame();
+            }
+        });
+
         // Exit button click handler
         exitButton.addEventListener('click', () => {
-            if (confirm('Are you sure you want to exit the game?')) {
-                window.location.reload();
+            if (confirm('Are you sure you want to exit to the main menu?')) {
+                window.location.href = './index.html';
             }
         });
 
         // Pause game function
         function pauseGame() {
-            gameState = 'paused';
-            pauseMenu.classList.add('active');
+            if (gameState === 'playing') {
+                gameState = 'paused';
+                pauseMenu.classList.add('active');
+                // Ensure the pause button is hidden when menu is open
+                pauseButton.style.opacity = '0.5';
+            }
         }
 
         // Resume game function
         function resumeGame() {
+            if (gameState === 'paused') {
+                gameState = 'playing';
+                pauseMenu.classList.remove('active');
+                pauseButton.style.opacity = '1';
+            }
+        }
+
+        // Restart game function
+        function restartGame() {
             gameState = 'playing';
             pauseMenu.classList.remove('active');
+            pauseButton.style.opacity = '1';
+
+            // Reset player position and state
+            if (player && player.image) {
+                player.position = {
+                    x: canvas.width / 2 - player.width / 2,
+                    y: player.groundY
+                };
+                player.velocity = { x: 0, y: 0 };
+                player.currentAnimation = 'idle';
+                player.frames = 0;
+                player.gameFrame = 0;
+                player.attackTimer = 0;
+                player.onGround = true;
+                player.isMoving = false;
+                player.direction = 'right';
+                player.coyoteTimer = 0;
+                player.jumpBufferTimer = 0;
+            }
+
+            // Reset input keys
+            Object.keys(keys).forEach(key => {
+                keys[key].pressed = false;
+            });
         }
 
         // ESC key to pause/resume
@@ -292,7 +389,7 @@
 
         window.addEventListener('keydown', ({ keyCode }) => {
             if (gameState === 'paused') return;
-            
+
             switch (keyCode) {
                 case 37: case 65: keys.left.pressed = true; break;
                 case 39: case 68: keys.right.pressed = true; break;
@@ -303,7 +400,7 @@
 
         window.addEventListener('keyup', ({ keyCode }) => {
             if (gameState === 'paused') return;
-            
+
             switch (keyCode) {
                 case 37: case 65: keys.left.pressed = false; break;
                 case 39: case 68: keys.right.pressed = false; break;
@@ -315,53 +412,60 @@
         // --- Player (Character) Class ---
         class Player {
             constructor() {
-                this.speed = 3; 
+                this.maxSpeed = 4;
+                this.acceleration = 0.4;
+                this.friction = 0.15;
                 this.position = { x: 100, y: 100 };
                 this.velocity = { x: 0, y: 0 };
                 this.image = null;
                 this.width = 0;
                 this.height = 0;
-                
-                this.jumpPower = 15;
-                this.gravity = 0.8;
+
+                this.jumpPower = 16;
+                this.gravity = 0.7;
+                this.maxFallSpeed = 12;
                 this.groundY = 500;
                 this.onGround = true;
-                
+                this.coyoteTime = 8;
+                this.coyoteTimer = 0;
+                this.jumpBufferTime = 5;
+                this.jumpBufferTimer = 0;
+
                 this.currentAnimation = 'idle';
                 this.previousAnimation = 'idle';
                 this.frames = 0;
                 this.gameFrame = 0;
                 this.direction = 'right';
-                
+
                 this.isMoving = false;
                 this.wasMoving = false;
                 this.lastPosition = { x: 100, y: 100 };
-                
+
                 this.animationTransitionTimer = 0;
                 this.animationTransitionDelay = 1;
-                
+
                 this.spriteWidth = 64;
                 this.spriteHeight = 64;
                 this.cols = 8;
                 this.rows = 4;
-                
+
                 // Animation definitions based on your spritesheet rows
                 this.animations = {
                     'idle': { row: 0, frames: 4, speed: 12 },
                     // --- CORRECTION 1: Changed walk speed from 1 to 5 ---
                     // A lower number means a faster, smoother animation.
-                    'walk': { row: 1, frames: 8, speed: 5 }, 
+                    'walk': { row: 1, frames: 8, speed: 5 },
                     'attack': { row: 2, frames: 8, speed: 3 },
                     'jump': { row: 3, frames: 7, speed: 4 }
                 };
-                
+
                 this.attackTimer = 0;
                 this.attackDuration = 30;
             }
 
             getCurrentAnimation() {
                 let targetAnimation;
-                
+
                 if (this.attackTimer > 0) {
                     targetAnimation = 'attack';
                 } else if (!this.onGround) {
@@ -371,21 +475,21 @@
                 } else {
                     targetAnimation = 'idle';
                 }
-                
+
                 if (targetAnimation !== this.currentAnimation) {
                     if ((this.currentAnimation === 'walk' && targetAnimation === 'idle') ||
                         (this.currentAnimation === 'idle' && targetAnimation === 'walk')) {
-                        
+
                         if (this.animationTransitionTimer < this.animationTransitionDelay) {
                             this.animationTransitionTimer++;
                             return this.animations[this.currentAnimation];
                         }
                     }
-                    
+
                     this.previousAnimation = this.currentAnimation;
                     this.currentAnimation = targetAnimation;
                     this.animationTransitionTimer = 0;
-                    
+
                     if ((this.previousAnimation === 'walk' && targetAnimation === 'idle') ||
                         (this.previousAnimation === 'idle' && targetAnimation === 'walk')) {
                         this.frames = Math.min(this.frames, 1);
@@ -393,7 +497,7 @@
                         this.frames = 0;
                     }
                 }
-                
+
                 return this.animations[this.currentAnimation];
             }
 
@@ -403,7 +507,7 @@
                     const frameX = Math.floor(this.frames) * this.spriteWidth;
                     const frameY = currentAnim.row * this.spriteHeight;
                     ctx.save();
-                    
+
                     if (this.direction === 'left') {
                         ctx.scale(-1, 1);
                         ctx.drawImage(
@@ -418,43 +522,122 @@
                             this.position.x, this.position.y, this.width, this.height
                         );
                     }
-                    
+
                     ctx.restore();
                 }
             }
-            
+
             update() {
                 const currentAnim = this.getCurrentAnimation();
-                
+
                 this.wasMoving = this.isMoving;
                 this.isMoving = (keys.left.pressed || keys.right.pressed) && this.attackTimer === 0;
-                
-                // --- CORRECTION 2: Unified animation logic ---
-                // This single block now handles all animations consistently,
-                // using the 'speed' property we defined for each state.
+
+                // Unified animation logic
                 if (this.gameFrame % currentAnim.speed === 0) {
                     this.frames = (this.frames + 1) % currentAnim.frames;
                 }
 
                 this.lastPosition.x = this.position.x;
                 this.lastPosition.y = this.position.y;
-                
+
                 this.gameFrame++;
 
                 if (this.attackTimer > 0) {
                     this.attackTimer--;
                 }
 
+                // Handle coyote time (allows jumping shortly after leaving ground)
+                if (this.onGround) {
+                    this.coyoteTimer = this.coyoteTime;
+                } else if (this.coyoteTimer > 0) {
+                    this.coyoteTimer--;
+                }
+
+                // Handle jump buffering (allows jump input slightly before landing)
+                if (keys.up.pressed) {
+                    this.jumpBufferTimer = this.jumpBufferTime;
+                } else if (this.jumpBufferTimer > 0) {
+                    this.jumpBufferTimer--;
+                }
+
+                // Improved horizontal movement with acceleration and friction
+                let targetVelocityX = 0;
+                if (this.attackTimer === 0) {
+                    if (keys.right.pressed && this.position.x + this.width < canvas.width) {
+                        targetVelocityX = this.maxSpeed;
+                        this.direction = 'right';
+                    } else if (keys.left.pressed && this.position.x > 0) {
+                        targetVelocityX = -this.maxSpeed;
+                        this.direction = 'left';
+                    }
+                }
+
+                // Smooth acceleration towards target velocity
+                if (targetVelocityX !== 0) {
+                    // Accelerate towards target speed
+                    if (Math.abs(this.velocity.x) < Math.abs(targetVelocityX)) {
+                        this.velocity.x += Math.sign(targetVelocityX) * this.acceleration;
+                        // Clamp to max speed
+                        if (Math.abs(this.velocity.x) > Math.abs(targetVelocityX)) {
+                            this.velocity.x = targetVelocityX;
+                        }
+                    }
+                } else {
+                    // Apply friction when no input
+                    if (Math.abs(this.velocity.x) > 0.1) {
+                        this.velocity.x *= (1 - this.friction);
+                    } else {
+                        this.velocity.x = 0;
+                    }
+                }
+
+                // Enhanced jumping with coyote time and jump buffering
+                if (this.jumpBufferTimer > 0 && this.coyoteTimer > 0 && this.attackTimer === 0) {
+                    this.velocity.y = -this.jumpPower;
+                    this.onGround = false;
+                    this.coyoteTimer = 0;
+                    this.jumpBufferTimer = 0;
+                    this.frames = 0;
+                }
+
+                // Variable jump height (shorter jump if key released early)
+                if (!keys.up.pressed && this.velocity.y < -4) {
+                    this.velocity.y *= 0.6;
+                }
+
+                // Apply gravity with terminal velocity
                 this.velocity.y += this.gravity;
+                if (this.velocity.y > this.maxFallSpeed) {
+                    this.velocity.y = this.maxFallSpeed;
+                }
+
+                // Update position
                 this.position.x += this.velocity.x;
                 this.position.y += this.velocity.y;
 
+                // Enhanced ground collision with better landing detection
                 if (this.position.y >= this.groundY) {
                     this.position.y = this.groundY;
-                    this.velocity.y = 0;
-                    this.onGround = true;
+                    if (this.velocity.y > 0) {
+                        this.velocity.y = 0;
+                        this.onGround = true;
+                        // Reset jump frame when landing
+                        if (this.currentAnimation === 'jump') {
+                            this.frames = 0;
+                        }
+                    }
                 } else {
                     this.onGround = false;
+                }
+
+                // Keep player within canvas bounds with smooth boundary collision
+                if (this.position.x < 0) {
+                    this.position.x = 0;
+                    this.velocity.x = Math.max(0, this.velocity.x);
+                } else if (this.position.x + this.width > canvas.width) {
+                    this.position.x = canvas.width - this.width;
+                    this.velocity.x = Math.min(0, this.velocity.x);
                 }
 
                 this.draw();
@@ -464,24 +647,24 @@
         const player = new Player();
         const character = new Image();
 
-        character.src = 'image-removebg-preview(1).png'; 
-        
+        character.src = 'image-removebg-preview(1).png';
+
         character.onload = () => {
             player.image = character;
-            
+
             player.spriteWidth = Math.floor(character.width / player.cols);
             player.spriteHeight = Math.floor(character.height / player.rows);
-            
+
             const scale = 1.5;
             player.width = player.spriteWidth * scale;
             player.height = player.spriteHeight * scale;
-            
+
             player.groundY = 570
             player.position = {
                 x: canvas.width / 2 - player.width / 2,
                 y: player.groundY
             };
-            
+
             player.lastPosition.x = player.position.x;
             player.lastPosition.y = player.position.y;
         };
@@ -489,34 +672,24 @@
         // --- Main Animation Loop ---
         function animate() {
             requestAnimationFrame(animate);
-            
+
+            // Only update game logic when not paused
             if (gameState === 'playing') {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-                player.velocity.x = 0;
-                
+                // Handle attack input
                 if (keys.attack.pressed && player.attackTimer === 0) {
                     player.attackTimer = player.attackDuration;
                     player.frames = 0;
                 }
-                
-                if (player.attackTimer === 0) {
-                    if (keys.right.pressed && player.position.x + player.width < canvas.width) {
-                        player.velocity.x = player.speed;
-                        player.direction = 'right';
-                    } else if (keys.left.pressed && player.position.x > 0) {
-                        player.velocity.x = -player.speed;
-                        player.direction = 'left';
-                    }
-                }
-
-                if (keys.up.pressed && player.onGround && player.attackTimer === 0) {
-                    player.velocity.y = -player.jumpPower;
-                    player.onGround = false;
-                    player.frames = 0;
-                }
 
                 player.update();
+            } else {
+                // When paused, just redraw the current frame without updating
+                if (player.image) {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    player.draw();
+                }
             }
         }
 
@@ -527,11 +700,12 @@
         window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-            if(player.image) {
+            if (player.image) {
                 player.groundY = canvas.height - player.height - 50;
             }
         });
     </script>
 
 </body>
+
 </html>

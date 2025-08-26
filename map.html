@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/ef3cedd966.js" crossorigin="anonymous"></script>
+    <style>
+        @font-face {
+            font-family: 'micro';
+            src: url(./font/Micro5-Regular.ttf);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: micro;
+            font-size: 30px;
+        }
+
+        body {
+            height: 100vh;
+            width: 100%;
+            background-image: url(./img/game_map.png);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            overflow: hidden;
+            position: relative;
+
+        }
+
+        .loader {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            z-index: 1000;
+            opacity: 1;
+            animation: fadeOutLoader 7s forwards;
+        }
+
+        @keyframes fadeOutLoader {
+            0% {
+                opacity: 1;
+                z-index: 1000;
+                transform: translateY(0);
+            }
+
+            80% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            100% {
+
+                z-index: -1;
+                transform: translateY(-100%);
+            }
+        }
+
+        .videoclass {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #0e1924;
+
+        }
+
+        video {
+            width: 400px;
+            height: 400px;
+
+        }
+
+        .navbutton {
+
+            display: flex;
+            flex-direction: column;
+            height: 70px;
+            width: 70px;
+            border-radius: 50%;
+            position: absolute;
+            left: 5%;
+            top: 5%;
+            justify-content: center;
+            align-items: center;
+            transition-duration: 0.5s;
+            z-index: 5;
+        }
+
+        .navbutton img {
+            height: 100%;
+            width: 100%;
+        }
+
+        .navbutton:hover {
+            transform: scale(1.2);
+        }
+
+        #nav-bar {
+            height: 200px;
+            width: 200px;
+            border-radius: 50%;
+            position: absolute;
+            /* Changed to fixed so it's centered relative to viewport, not just body */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /* Center horizontally and vertically */
+            background: rgba(0, 0, 0, 0.3);
+            display: none;
+            /* Keep hidden initially */
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+        }
+
+        #nav-bar:target {
+            display: flex;
+            transition: opacity 0.4s ease-in-out, transform 0.8s ease-in-out;
+            /* Add transform to transition */
+            opacity: 1;
+            transform: translate(-50%, -50%) rotate(0deg);
+            /* Start with no rotation */
+            /* If you want a 3D flip effect on target, you'd apply it here */
+            /* For a simple 360deg rotation from its initial state:
+            transform: translate(-50%, -50%) rotate(360deg); */
+        }
+
+        #nav-bar .nav-section i {
+            font-size: 30px;
+            color: white;
+            position: absolute;
+            /* Adjust positions relative to the #nav-bar's center */
+        }
+
+        /* Adjusting positions of inner icons relative to the #nav-bar */
+        #nav-bar .nav-section:nth-child(1) i {
+            top: 10%;
+            /* Closer to the top edge of the 200px circle */
+            left: 50%;
+            transform: translateX(-50%);
+            /* Center horizontally relative to nav-bar */
+        }
+
+        #nav-bar .nav-section:nth-child(2) i {
+            top: 30%;
+            left: 15%;
+            /* Further from the left edge */
+        }
+
+        #nav-bar .nav-section:nth-child(3) i {
+            top: 30%;
+            right: 15%;
+            /* Further from the right edge */
+        }
+
+        #nav-bar .nav-section:nth-child(4) i {
+            bottom: 15%;
+            /* Further from the bottom edge */
+            right: 25%;
+        }
+
+        #nav-bar .nav-section:nth-child(5) i {
+            bottom: 15%;
+            /* Further from the bottom edge */
+            left: 25%;
+        }
+
+        .nav-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /* Keep this centered */
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.3s ease;
+            text-decoration: none;
+        }
+
+        #game-map-container {
+            position: absolute;
+            /* Or relative, depending on your body setup */
+            width: 100%;
+            height: 100%;
+        }
+
+        .interactive-region {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .interactive-region::before {
+            content: '📍';
+            font-size: 20px;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .interactive-region:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 20px 8px rgba(255, 255, 255, 0.6);
+            transform: scale(1.2);
+            z-index: 500;
+        }
+
+        .interactive-region:hover::before {
+            font-size: 24px;
+            opacity: 1;
+        }
+
+        /* Glassmorphism modal overlay */
+        #modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        #modal-overlay.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        #location-info-panel {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            width: 90%;
+            max-width: 600px;
+            color: #ffffff;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.4s ease;
+            position: relative;
+        }
+
+        #location-info-panel h2 {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        #location-info-panel p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            color: #e0e0e0;
+        }
+
+        #close-info-panel {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+            padding: 12px 25px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        #close-info-panel:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Ensure font-family 'micro' is applied correctly to the panel too */
+        #location-info-panel * {
+            font-family: 'micro', sans-serif;
+        }
+
+        .nav-center i {
+            font-size: 28px;
+            color: white;
+        }
+
+        .nav-center:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-center i:hover {
+            color: red;
+            transform: scale(1.2);
+        }
+
+        #nav-bar .nav-section i {
+            font-size: 30px;
+            color: white;
+            position: absolute;
+            transition: all 0.4s ease-in-out;
+        }
+
+        #nav-bar .nav-section i:hover {
+            transform: scale(1.2);
+            color: #ffd700;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="loader">
+        <div class="videoclass">
+            <video src="./video/map_loading.mp4" muted autoplay></video>
+        </div>
+    </div>
+    <a class="navbutton" href="#nav-bar">
+        <img src="./img/compass.png" alt="">
+    </a>
+    <div id="nav-bar">
+        <div class="nav-section"><a href="./index.html"><i class="fas fa-home"></i></a>
+        </div>
+        <div class="nav-section"><a href="./characters.html"><i class="fa-solid fa-user-secret"></i></a></div>
+        <div class="nav-section"><a href="./story.html"><i class="fa-solid fa-book"></i></a></div>
+        <div class="nav-section"><a href="./map.html"><i class="fa-solid fa-map-location-dot"
+                    style="color: #ffd700;"></i></a></div>
+        <div class="nav-section"><a href="./community.html"><i class="fa-solid fa-people-group"></i></a></div>
+        <a class="nav-center" href="#"><i class="fas fa-times"></i></a>
+    </div>
+    <div id="game-map-container">
+        <img src="./img/game_map.png" alt="Aethel Game Map" usemap="#aethelmap" style="display: none;">
+        <map name="aethelmap">
+            <area shape="rect" coords="300,300,400,400" alt="Central Castle" data-location="central-castle">
+        </map>
+        <div class="interactive-region" id="central-castle-region" style="top: 28%; left: 30%; width: 4%; height: 6%;"
+            data-location="central-castle"></div>
+        <div class="interactive-region" id="red-roof-castle-region" style="top: 68%; left: 42%; width: 3%; height: 4%;"
+            data-location="red-roof-castle"></div>
+        <div class="interactive-region" id="fortress-ruins-region" style="top: 78%; left: 77%; width: 3%; height: 4%;"
+            data-location="fortress-ruins"></div>
+        <div class="interactive-region" id="western-village-region"
+            style="top: 53%; left: 7%; width: 2.5%; height: 3.5%;" data-location="western-village"></div>
+        <div class="interactive-region" id="volcano-village-region"
+            style="top: 43%; left: 67%; width: 2.5%; height: 3.5%;" data-location="volcano-village"></div>
+        <div class="interactive-region" id="eastern-coast-village-region"
+            style="top: 58%; left: 87%; width: 2.5%; height: 3.5%;" data-location="eastern-coast-village"></div>
+        <div class="interactive-region" id="volcano-region" style="top: 38%; left: 72%; width: 3.5%; height: 5%;"
+            data-location="volcano"></div>
+        <div class="interactive-region" id="desert-region" style="top: 68%; left: 57%; width: 4%; height: 6%;"
+            data-location="desert"></div>
+        <div class="interactive-region" id="snowy-north-region" style="top: 8%; left: 72%; width: 4%; height: 6%;"
+            data-location="snowy-north"></div>
+        <div class="interactive-region" id="lighthouse-region" style="top: 55%; left: 5%; width: 2%; height: 3%;"
+            data-location="lighthouse"></div>
+        <div class="interactive-region" id="north-tower-region" style="top: 13%; left: 37%; width: 2%; height: 3%;"
+            data-location="north-tower"></div>
+        <div class="interactive-region" id="forest-tower-region" style="top: 28%; left: 57%; width: 2%; height: 3%;"
+            data-location="forest-tower"></div>
+        <div class="interactive-region" id="stone-heads-south-region"
+            style="top: 83%; left: 22%; width: 2.5%; height: 3.5%;" data-location="stone-heads-south"></div>
+        <div class="interactive-region" id="stone-heads-west-region"
+            style="top: 58%; left: 17%; width: 2.5%; height: 3.5%;" data-location="stone-heads-west"></div>
+        <div class="interactive-region" id="mansion-school-region" style="top: 48%; left: 52%; width: 3%; height: 4%;"
+            data-location="mansion-school"></div>
+
+
+    </div>
+
+    <div id="modal-overlay">
+        <div id="location-info-panel">
+            <h2 id="location-name"></h2>
+            <p id="location-description"></p>
+            <button id="close-info-panel">Close</button>
+        </div>
+    </div>
+
+    <script>
+
+        const locationData = {
+            'central-castle': {
+                name: 'Central Castle',
+                description: 'The magnificent Central Castle stands as the heart of the realm, with towering spires that pierce the clouds. This ancient stronghold has withstood countless battles and serves as the seat of power for the kingdom.'
+            },
+            'red-roof-castle': {
+                name: 'Red Roof Castle',
+                description: 'A smaller but strategically important castle with distinctive red roofing. Known for its excellent defense against mountain raiders and its role as a trading post between the central lands and the eastern territories.'
+            },
+            'fortress-ruins': {
+                name: 'Ancient Fortress Ruins',
+                description: 'The crumbling remains of an ancient fortress that once guarded the eastern passes. Though now in ruins, it still holds many secrets and is said to be haunted by the spirits of fallen warriors.'
+            },
+            'western-village': {
+                name: 'Western Village',
+                description: 'A peaceful coastal village known for its skilled fishermen and boat builders. The villagers here are renowned for their hospitality and their knowledge of the treacherous western seas.'
+            },
+            'volcano-village': {
+                name: 'Volcano Village',
+                description: 'A brave settlement built near the active volcano, where the people have learned to harness the volcanic energy for their forges. Home to the finest blacksmiths and weapon crafters in the land.'
+            },
+            'eastern-coast-village': {
+                name: 'Eastern Coast Village',
+                description: 'A thriving port town that serves as the main gateway for trade with distant lands. The village is famous for its exotic markets and the tales told by traveling merchants.'
+            },
+            'volcano': {
+                name: 'Fire Mountain',
+                description: 'An active volcano that dominates the eastern landscape. Legend says that deep within its fiery depths lies the forge of the ancient Fire Lords, where magical weapons were once created.'
+            },
+            'desert': {
+                name: 'Golden Desert',
+                description: 'A vast expanse of golden sand dunes that stretch to the horizon. Hidden within these sands are ancient tombs and lost cities, guarded by mysterious desert nomads.'
+            },
+            'snowy-north': {
+                name: 'Frozen Northlands',
+                description: 'The harsh and unforgiving northern territories, covered in eternal snow and ice. Only the hardiest of adventurers dare to venture here, seeking the legendary Ice Crystals.'
+            },
+            'lighthouse': {
+                name: 'Guardian Lighthouse',
+                description: 'A towering lighthouse that has guided ships safely to shore for centuries. Its magical beacon can be seen from great distances and is said to repel sea monsters.'
+            },
+            'north-tower': {
+                name: 'Northern Watchtower',
+                description: 'A solitary watchtower that serves as an early warning system for threats from the frozen north. Manned by elite scouts who can spot danger from miles away.'
+            },
+            'forest-tower': {
+                name: 'Forest Watchtower',
+                description: 'A watchtower hidden within the dense forest, serving as a lookout point and safe haven for travelers. Rangers based here protect the woodland creatures and maintain forest paths.'
+            },
+            'stone-heads-south': {
+                name: 'Southern Stone Guardians',
+                description: 'Mysterious ancient stone heads carved by a long-lost civilization. These imposing monuments are believed to ward off evil spirits and mark sacred burial grounds.'
+            },
+            'stone-heads-west': {
+                name: 'Western Stone Sentinels',
+                description: 'Ancient stone monuments that have stood watch over the western approaches for millennia. Local legends claim they come to life during times of great danger to defend the land.'
+            },
+            'mansion-school': {
+                name: 'Academy of Mystic Arts',
+                description: 'A grand mansion that serves as the premier academy for magical learning. Here, the most promising students come to study the arcane arts under the guidance of master wizards.'
+            }
+        };
+
+
+        const modalOverlay = document.getElementById('modal-overlay');
+        const locationName = document.getElementById('location-name');
+        const locationDescription = document.getElementById('location-description');
+        const closeButton = document.getElementById('close-info-panel');
+        const interactiveRegions = document.querySelectorAll('.interactive-region');
+
+
+        interactiveRegions.forEach(region => {
+            region.addEventListener('click', function () {
+                const locationId = this.getAttribute('data-location');
+                const data = locationData[locationId];
+
+                if (data) {
+                    locationName.textContent = data.name;
+                    locationDescription.textContent = data.description;
+                    modalOverlay.classList.add('show');
+                }
+            });
+        });
+
+
+        closeButton.addEventListener('click', function () {
+            modalOverlay.classList.remove('show');
+        });
+
+
+        modalOverlay.addEventListener('click', function (e) {
+            if (e.target === modalOverlay) {
+                modalOverlay.classList.remove('show');
+            }
+        });
+
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && modalOverlay.classList.contains('show')) {
+                modalOverlay.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+
+</html>

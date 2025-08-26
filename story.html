@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,220 +10,268 @@
     <script src="./js/main.js" defer></script>
     <script src="https://kit.fontawesome.com/ef3cedd966.js" crossorigin="anonymous"></script>
     <style>
-        body{
-            background-image:url(./img/book_bg.webp);
+        body {
+            background-image: url(./img/book_bg.webp);
             background-position: center;
             background-repeat: no-repeat;
             background-size: 100% 100%;
             position: relative;
         }
-        .navbutton{
-    
-    display: flex;
-    flex-direction: column;
-    height: 70px;
-    width: 70px;
-    border-radius: 50%;
-    position: absolute;
-    left: 5%;
-    top: 5%;
-    justify-content: center;
-    align-items: center;
-    transition-duration: 0.5s;
-    
-}
-.navbutton img{
-    height: 100%;
-    width: 100%;
-}
-.navbutton:hover{
-    transform: scale(1.2);
-}
-#nav-bar {
-    height: 200px;
-    width: 200px;
-    border-radius: 50%;
-    position: absolute;
-    background: rgba(0, 0, 0, 0.3);
-    display: none;
-    opacity: 0;
-    transition: opacity 0.8s ease-in-out;
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(4px);
-    z-index: 1000;
-}
-#nav-bar:target {
-    display: flex;
-    transition: opacity 0.4s ease-in-out;
-    opacity: 1;
-    transform:rotateX(360deg);
-}
-#nav-bar .nav-section i{
-    font-size: 30px;
-    color: white;
-    position: absolute;
-}
-#nav-bar .nav-section i:hover{
-    transform: scale(1.2);
-    transition: 0.4s ease-in-out;
-    color: #a88a65;
-}
-.nav-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background 0.3s ease;
-    text-decoration: none;
-}
-.nav-center i {
-    font-size: 28px;
-    color: white;
-}
-.nav-center:hover {
-    background: rgba(255, 255, 255, 0.3);
-}
-.nav-center i:hover {
-    color: red;
-    transition: 0.4s ease-in-out;
-    transform: scale(1.2);
-}
-#nav-bar .nav-section:nth-child(1) i {
-    left: 42%;
-    top: 5%;
-}
-#nav-bar .nav-section:nth-child(2) i {
-    left: 10%;
-    top: 30%;
-}
-#nav-bar .nav-section:nth-child(3) i {
-    right: 10%;
-    top: 30%;
-}
-#nav-bar .nav-section:nth-child(4) i {
-    right: 20%;
-    bottom: 15%;
-}
-#nav-bar .nav-section:nth-child(5) i {
-    left: 20%;
-    top: 70%;
-}
-        #f1{
+
+        .navbutton {
+
+            display: flex;
+            flex-direction: column;
+            height: 70px;
+            width: 70px;
+            border-radius: 50%;
+            position: absolute;
+            left: 5%;
+            top: 5%;
+            justify-content: center;
+            align-items: center;
+            transition-duration: 0.5s;
+
+        }
+
+        .navbutton img {
+            height: 100%;
+            width: 100%;
+        }
+
+        .navbutton:hover {
+            transform: scale(1.2);
+        }
+
+        #nav-bar {
+            height: 200px;
+            width: 200px;
+            border-radius: 50%;
+            position: absolute;
+            background: rgba(0, 0, 0, 0.3);
+            display: none;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+        }
+
+        #nav-bar:target {
+            display: flex;
+            transition: opacity 0.4s ease-in-out;
+            opacity: 1;
+            transform: rotateX(360deg);
+        }
+
+        #nav-bar .nav-section i {
+            font-size: 30px;
+            color: white;
+            position: absolute;
+        }
+
+        #nav-bar .nav-section i:hover {
+            transform: scale(1.2);
+            transition: 0.4s ease-in-out;
+            color: #ffd700;
+        }
+
+        .nav-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.3s ease;
+            text-decoration: none;
+        }
+
+        .nav-center i {
+            font-size: 28px;
+            color: white;
+        }
+
+        .nav-center:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-center i:hover {
+            color: red;
+            transition: 0.4s ease-in-out;
+            transform: scale(1.2);
+        }
+
+        #nav-bar .nav-section:nth-child(1) i {
+            left: 42%;
+            top: 5%;
+        }
+
+        #nav-bar .nav-section:nth-child(2) i {
+            left: 10%;
+            top: 30%;
+        }
+
+        #nav-bar .nav-section:nth-child(3) i {
+            right: 10%;
+            top: 30%;
+        }
+
+        #nav-bar .nav-section:nth-child(4) i {
+            right: 20%;
+            bottom: 15%;
+        }
+
+        #nav-bar .nav-section:nth-child(5) i {
+            left: 20%;
+            top: 70%;
+        }
+
+        #f1 {
             background-image: url(./img/book_cover_front.png);
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
         }
-        .front , .back{
+
+        .front,
+        .back {
             display: flex;
             flex-direction: column;
-            
+
         }
-        .front{
+
+        .front {
             background-image: url(./img/left_page.png);
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
         }
-        .back{
+
+        .back {
             background-image: url(./img/right_page.png);
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
         }
-        h1{
-            color:#92492d;
+
+        h1 {
+            color: #92492d;
         }
-        #f1{
+
+        #f1 {
             position: relative;
         }
-        #f1 h1{
+
+        #f1 h1 {
             font-size: 70px;
-            text-shadow:4px  4px 0 #000; 
+            text-shadow: 4px 4px 0 #000;
             position: absolute;
             bottom: 30%;
         }
-        #b1{
+
+        #b1 {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            
+
         }
-        #f2 ,#f3,#f4,#f5,#b1 ,#b2 ,#b3,#b4,#b5{
+
+        #f2,
+        #f3,
+        #f4,
+        #f5,
+        #b1,
+        #b2,
+        #b3,
+        #b4,
+        #b5 {
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
             text-align: center;
         }
-        #f2 h1{
+
+        #f2 h1 {
             font-size: 35px;
             padding: 10px;
         }
-        #f3 h1{
+
+        #f3 h1 {
             font-size: 35px;
             padding: 10px;
         }
-         #f4 h1{
+
+        #f4 h1 {
             font-size: 35px;
             padding: 10px;
         }
-         #f5 h1{
+
+        #f5 h1 {
             font-size: 35px;
             padding: 10px;
         }
-        #b2 h1{
-             font-size: 35px;
+
+        #b2 h1 {
+            font-size: 35px;
             padding: 10px;
         }
-         #b3 h1{
-             font-size: 35px;
+
+        #b3 h1 {
+            font-size: 35px;
             padding: 10px;
         }
-         #b4 h1{
-             font-size: 35px;
+
+        #b4 h1 {
+            font-size: 35px;
             padding: 10px;
         }
-        #f2 img{
+
+        #f2 img {
             width: 100%;
             padding: 10px;
             height: 30%;
-            
+
         }
-        #f2 p{
+
+        #f2 p {
             padding: 15px;
-            
+
             font-size: 20px;
         }
-        #b2 img{
+
+        #b2 img {
             width: 100%;
             height: 100%;
             padding: 20px;
         }
-        #f3 p{
+
+        #f3 p {
             font-size: 20px;
             padding: 10px;
             text-align: left;
         }
-        #b3 img{
+
+        #b3 img {
             width: 100%;
             height: 100%;
             padding: 20px;
         }
-        #f4 img{
+
+        #f4 img {
             width: 100%;
             height: 100%;
             padding: 20px;
         }
-        #b4 div{
+
+        #b4 div {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -232,17 +281,20 @@
             margin: 20px;
             margin-bottom: 10%;
         }
-        #b4 div img{
+
+        #b4 div img {
             height: 100%;
             width: 50%;
 
         }
-        #b4 div p{
+
+        #b4 div p {
             font-size: 20px;
             padding: 10px;
             text-align: left;
         }
-        #f5 div{
+
+        #f5 div {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -252,50 +304,51 @@
             margin: 20px;
             margin-bottom: 20%;
         }
-        #f5 div img{
+
+        #f5 div img {
             height: 100%;
             width: 50%;
 
         }
-        #f5 div p{
+
+        #f5 div p {
             font-size: 20px;
             padding: 10px;
             text-align: left;
         }
-        #b5{
+
+        #b5 {
             background-image: url(./img/book_cover_front.png);
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
         }
-
     </style>
 </head>
+
 <body>
-   <div class="loader">
+    <div class="loader">
         <div class="videoclass">
-            <video src="./video/video (4).mp4" muted autoplay></video> 
+            <video src="./video/video (4).mp4" muted autoplay></video>
         </div>
     </div>
-    <!-- Previous Button -->
-     <a class="navbutton" href="#nav-bar">
-            <img src="./img/compass.png" alt="">
+    <a class="navbutton" href="#nav-bar">
+        <img src="./img/compass.png" alt="">
     </a>
     <div id="nav-bar">
-            <div class="nav-section" ><a href="./index.html"><i class="fas fa-home" ></i></a>
-            </div>
-            <div class="nav-section" ><a href="./characters.html"><i class="fa-solid fa-user-secret"></i></a></div>
-            <div class="nav-section" ><a href="#"><i class="fa-solid fa-book" style="color: #7b544e;"></i>></i></a></div>
-            <div class="nav-section" ><a href="./map.html"><i class="fa-solid fa-map-location-dot"></i></a></div>
-            <div class="nav-section" ><a href="./community.html"><i class="fa-solid fa-people-group"></i></a></div>
-            <a class="nav-center" href="#"><i class="fas fa-times"></i></a>
+        <div class="nav-section"><a href="./index.html"><i class="fas fa-home"></i></a>
         </div>
+        <div class="nav-section"><a href="./characters.html"><i class="fa-solid fa-user-secret"></i></a></div>
+        <div class="nav-section"><a href="./story.html"><i class="fa-solid fa-book" style="color: #ffd700;"></i></a>
+        </div>
+        <div class="nav-section"><a href="./map.html"><i class="fa-solid fa-map-location-dot"></i></a></div>
+        <div class="nav-section"><a href="./community.html"><i class="fa-solid fa-people-group"></i></a></div>
+        <a class="nav-center" href="#"><i class="fas fa-times"></i></a>
+    </div>
     <button id="prev-btn">
         <img src="./img/left_arrow.png" alt="" width="50px" height="50px">
     </button>
-    <!-- Book -->
     <div id="book" class="book">
-        <!-- Paper 1 -->
         <div id="p1" class="paper">
             <div class="front">
                 <div id="f1" class="front-content">
@@ -304,17 +357,22 @@
             </div>
             <div class="back">
                 <div id="b1" class="back-content">
-                    
+
                 </div>
             </div>
         </div>
-        <!-- Paper 2 -->
         <div id="p2" class="paper">
             <div class="front">
                 <div id="f2" class="front-content">
                     <h1>Chronicles of the eternal conflict</h1>
                     <img src="./img/chronicles_of_eternal.png" alt="">
-                    <p>In a time now lost to memory, the world of Aethel was whole. But from a cataclysm born of pride, the land was fractured, its continents cast into an endless sky. Now, all that remains is the Drifting Archipelago, a sea of floating islands where survival is a daily struggle. Yet, a singular hope, a whispered legend, endures: the Stillpoint. It is said to be the last anchor of the old world, a source of immense power that can reshape reality. Three factions now vie for this ultimate prize, each with a vision for the future. Their war will define what is to come.</p>
+                    <p>In a time now lost to memory, the world of Aethel was whole. But from a cataclysm born of pride,
+                        the land was fractured, its continents cast into an endless sky. Now, all that remains is the
+                        Drifting Archipelago, a sea of floating islands where survival is a daily struggle. Yet, a
+                        singular hope, a whispered legend, endures: the Stillpoint. It is said to be the last anchor of
+                        the old world, a source of immense power that can reshape reality. Three factions now vie for
+                        this ultimate prize, each with a vision for the future. Their war will define what is to come.
+                    </p>
                 </div>
             </div>
             <div class="back">
@@ -323,12 +381,17 @@
                 </div>
             </div>
         </div>
-        <!-- Paper 3 -->
         <div id="p3" class="paper">
             <div class="front">
                 <div id="f3" class="front-content">
                     <h1>Echoes of Aethel</h1>
-                    <p>In a time now lost to memory, the world of Aethel was whole. But from a cataclysm born of pride, the land was fractured, its continents cast into an endless sky. Now, all that remains is the Drifting Archipelago, a sea of floating islands where survival is a daily struggle. Yet, a singular hope, a whispered legend, endures: the Stillpoint. It is said to be the last anchor of the old world, a source of immense power that can reshape reality. Three factions now vie for this ultimate prize, each with a vision for the future. Their war will define what is to come.</p>
+                    <p>In a time now lost to memory, the world of Aethel was whole. But from a cataclysm born of pride,
+                        the land was fractured, its continents cast into an endless sky. Now, all that remains is the
+                        Drifting Archipelago, a sea of floating islands where survival is a daily struggle. Yet, a
+                        singular hope, a whispered legend, endures: the Stillpoint. It is said to be the last anchor of
+                        the old world, a source of immense power that can reshape reality. Three factions now vie for
+                        this ultimate prize, each with a vision for the future. Their war will define what is to come.
+                    </p>
                 </div>
             </div>
             <div class="back">
@@ -337,7 +400,6 @@
                 </div>
             </div>
         </div>
-        <!-- Paper 4 -->
         <div id="p4" class="paper">
             <div class="front">
                 <div id="f4" class="front-content">
@@ -348,42 +410,51 @@
                 <div id="b4" class="back-content">
                     <h1>The Three Factions</h1>
                     <div><img src="./img/theverdict.png" alt="">
-                         <p>Descendants of the ancient forest keepers, the Guard seeks to use the Stillpoint to heal the fractured world. They believe the cataclysm was a result of abandoning nature, and only by restoring the great forests of Aethel can balance be returned. </p>
+                        <p>Descendants of the ancient forest keepers, the Guard seeks to use the Stillpoint to heal the
+                            fractured world. They believe the cataclysm was a result of abandoning nature, and only by
+                            restoring the great forests of Aethel can balance be returned. </p>
                     </div>
                     <div><img src="./img/cogwork.png" alt="">
-                         <p>Believing that the old ways failed and nature is too chaotic to be trusted, the Collective puts its faith in logic, metal, and steam. They see the Stillpoint as the ultimate power source, an engine to mechanize the archipelago and build a new, orderly world from the ashes of the old. </p>
+                        <p>Believing that the old ways failed and nature is too chaotic to be trusted, the Collective
+                            puts its faith in logic, metal, and steam. They see the Stillpoint as the ultimate power
+                            source, an engine to mechanize the archipelago and build a new, orderly world from the ashes
+                            of the old. </p>
                     </div>
                     <div><img src="./img/moonseer.png" alt="">
-                         <p>Mystics who draw their power from the celestial bodies and the ambient magic of the sky-sea. The Seers view the Stillpoint not as a tool, but as a cosmic wound.</p>
+                        <p>Mystics who draw their power from the celestial bodies and the ambient magic of the sky-sea.
+                            The Seers view the Stillpoint not as a tool, but as a cosmic wound.</p>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Paper 5 -->
         <div id="p5" class="paper">
             <div class="front">
                 <div id="f5" class="front-content">
                     <h1>Character Backstory</h1>
                     <div><img src="./img/pixelboy.png" alt="">
-                         <p>Eryn hails from the peaceful village of Eldervale, nestled deep within the whispering forests of the Verdant Realm. Eldervale is known for its lush greenery, ancient trees, and harmony between humans and nature spirits.</p>
+                        <p>Eryn hails from the peaceful village of Eldervale, nestled deep within the whispering forests
+                            of the Verdant Realm. Eldervale is known for its lush greenery, ancient trees, and harmony
+                            between humans and nature spirits.</p>
                     </div>
                     <div><img src="./img/pixelgirl.png" alt="">
-                         <p>Lira comes from the mystical Moonshadow Glade, a hidden grove bathed in perpetual twilight and ancient magic. This secluded sanctuary is protected by the Moonshadow tribe, who are known for their deep connection to nature and arcane arts..</p>
+                        <p>Lira comes from the mystical Moonshadow Glade, a hidden grove bathed in perpetual twilight
+                            and ancient magic. This secluded sanctuary is protected by the Moonshadow tribe, who are
+                            known for their deep connection to nature and arcane arts..</p>
                     </div>
                 </div>
             </div>
             <div class="back">
                 <div id="b5" class="back-content">
-                    
+
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Next Button -->
     <button id="next-btn">
         <img src="./img/arrow_button.png" alt="" width="50px" height="50px">
     </button>
-    
+
 </body>
+
 </html>
